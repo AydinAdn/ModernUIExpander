@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="ModernUIExpander.NewPage" 
+			 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+			 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+			 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+			 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+			 mc:Ignorable="d"  
+			 d:DesignHeight="300" d:DesignWidth="300">
+	
+	<UserControl.Resources>
+		<DataTemplate x:Key="ListBoxTemplate">
+			<Expander x:Name="Expander" Header="{Binding}" Style="{DynamicResource MuiExpander}"
+					  Template="{DynamicResource ExpandTheTemplate}" >
+				
+				
+				<Border BorderThickness="10" BorderBrush="{DynamicResource GridBackground}">
+					<Grid Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}"
+						  Background="{DynamicResource GridBackground}">
+
+						<TextBlock Text="I'm the expanded content" />
+						
+					</Grid>
+				</Border>
+			</Expander>
+		</DataTemplate>
+	</UserControl.Resources>
+
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition />			   
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<Expander x:Name="Expander" 
+				  Header="Example 1: Stand alone" 
+				  Style="{DynamicResource MuiExpander}"
+				  Template="{DynamicResource ExpandTheTemplate}" 
+				  VerticalAlignment="Top">
+			
+			<Border BorderThickness="10" BorderBrush="{DynamicResource GridBackground}">
+
+				<Grid Background="{DynamicResource GridBackground}" 
+					  HorizontalAlignment="Stretch" 
+					  ScrollViewer.CanContentScroll="False"
+					  Width="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=ActualWidth}">
+
+					<TextBlock Text="I'm the expanded content" />
+				</Grid>
+			</Border>
+		</Expander>
+
+		<ListBox x:Name="ExpanderListBox" Grid.Column="1" 
+				 ItemTemplate="{StaticResource ListBoxTemplate}"
+				 ScrollViewer.CanContentScroll="True" 
+				 ScrollViewer.HorizontalScrollBarVisibility="Disabled"  />
+	</Grid>
+</UserControl>
