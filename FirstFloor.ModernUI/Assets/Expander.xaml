@@ -8,13 +8,15 @@
 	<!-- Animated Expander Button's Template-->
 	<ControlTemplate x:Key="AnimatedExpanderTemplate" TargetType="{x:Type ToggleButton}">
 
-		<Grid HorizontalAlignment="Stretch">
+		<Grid HorizontalAlignment="Stretch" Width="{Binding RelativeSource={RelativeSource AncestorType=ListBoxItem}, Path=ActualWidth}">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto" />
+				<ColumnDefinition Width="50*" />
 				<ColumnDefinition Width="1*" />
 			</Grid.ColumnDefinitions>
 			
-
+			<Rectangle Grid.ColumnSpan="3" Fill="Transparent" StrokeThickness="0" />
+			
 			<Ellipse x:Name="OuterCircle" 
 					 Fill="{DynamicResource ExpanderBackground}"  
 					 Margin="5" 
